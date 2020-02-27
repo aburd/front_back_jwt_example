@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const jwt = require('jsonwebtoken')
+const { superSecretKey } = require('../lib')
 
 // A fake login, so we'll just make the logins static...
 const users = [
@@ -13,8 +14,6 @@ const users = [
     }
 ]
 
-const superSecretKey = 'i am a secrettttt'
-
 function authenticate(username, password) {
     const user = users.find(u => u.username === username)
     if(!user) return false
@@ -24,9 +23,7 @@ function authenticate(username, password) {
 
 router.post('/', (req, res) => {
     const token = jwt.sign({ foo: 'bar' }, superSecretKey)
-    console.log('token', token)
     const { username, password } = req.body
-    console.log({ username, password })
     if(!(username && password)) {
         res.status(422)
         res.json({ 
