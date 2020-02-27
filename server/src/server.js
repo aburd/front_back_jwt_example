@@ -3,7 +3,7 @@ const app = express()
 
 const userRoutes = require('./routes/users')
 
-app.use('/users', userRoutes)
+app.use('/api/users', userRoutes)
 
 const port = process.env.PORT || 3000
 app.listen(port, function() {
