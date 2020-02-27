@@ -12,7 +12,10 @@ module.exports = merge (common, {
         historyApiFallback: true,
         overlay: true,
         open: true,
-        stats: 'errors-only'
+        stats: 'errors-only',
+        proxy: {
+            '/api': 'http://localhost:3000'
+        },
     },
     module: {
         rules: [
