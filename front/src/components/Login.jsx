@@ -18,9 +18,14 @@ export default class Login extends Component {
         }
         fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body)})
             .then(res => res.json())
-            .then(({ message, ok }) => {
+            .then(({ message, ok, token }) => {
                 if(ok) {
                     console.log('Login ok!')
+                    window.localStorage.setItem('token', token)
+                    this.setState({ 
+                        message: '',
+                        loggedIn: true,
+                    })
                 } else {
                     this.setState({ message })
                 }
