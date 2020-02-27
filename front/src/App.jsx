@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import UserList, { User } from './UserList'
+import './scss/app.scss'
 
 export default class App extends Component {
     state = {
@@ -47,17 +48,20 @@ export default class App extends Component {
     render() {
         const { users, loading, selectedUserId } = this.state;
         return (
-            <div>
+            <div className="container">
                 <h1>A Simple User List</h1>
                 {loading 
                     ? <h3>Loading...</h3> 
                     : (
                         <div>
-                            {selectedUserId && (
+                            {selectedUserId 
+                                ? (
                                 <User 
                                     {...(users.find(u => u.id == selectedUserId))}
-                                />
-                            )}
+                                /> )
+                                : (
+                                    <div className="user">Please select a user</div>
+                                )}
                             {this.state.users.length 
                                 ? (
                                     <UserList 

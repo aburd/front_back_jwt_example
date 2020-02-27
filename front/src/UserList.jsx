@@ -8,11 +8,11 @@ export function User({
     jobTitle,
 }) {
     return (
-        <li>
+        <div className="user">
             <div>ID: {id}</div>
             <div>Name: {firstName} {lastName}</div>
             <div>Job Title: {jobTitle}</div>
-        </li>
+        </div>
     )
 }
 
@@ -27,11 +27,11 @@ User.propTypes = UserType
 
 export default function UserList({ users, onClick }) {
     return (
-        <ul>
+        <ul className="user-list">
             {users.map(user => (
-                <div key={user.id}>
+                <li key={user.id}>
                     <a onClick={() => onClick(user.id)}>{user.firstName} {user.lastName}</a>
-                </div>
+                </li>
             ))}
         </ul>
     )
