@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import UserList, { User } from './UserList'
-import './scss/app.scss'
 
 export default class App extends Component {
     state = {
