@@ -13,6 +13,10 @@ app.use(bodyParser.json())
 app.use('/api/users', userRoutes)
 app.use('/api/login', loginRoutes)
 
+app.use(function (req, res, next) {
+    res.status(404).send("Sorry can't find that!")
+})
+
 const port = process.env.PORT || 3000
 app.listen(port, function() {
     console.log(`Listening on port ${port}`)
