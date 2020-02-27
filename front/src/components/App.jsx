@@ -12,10 +12,21 @@ export default class App extends Component {
         this.fetchUsers()
     }
 
+    getToken() {
+        return window.localStorage.getItem('token')
+    }
+
+    makeHeaders = () => {
+        return { 
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + this.getToken(),
+        }
+    }
+
     fetchUsers = () => {
         const url = `/api/users`
         this.setState({ loading: true })
-        fetch(url, { headers: { 'Content-Type': 'application/json' } })
+        fetch(url, { headers: this.makeHeaders() })
             .then(res => res.json())
             .then(({ users }) => {
                 this.setState({
@@ -31,7 +42,7 @@ export default class App extends Component {
     fetchUser = (id) => {
         const url = `/api/users/${id}`
         this.setState({ loading: true })
-        fetch(url, { headers: { 'Content-Type': 'application/json' } })
+        fetch(url, { headers: this.makeHeaders() })
             .then(res => res.json())
             .then(({ user }) => {
                 this.setState({
