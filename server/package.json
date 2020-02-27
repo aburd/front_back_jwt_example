@@ -1,0 +1,17 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "faker": "^4.1.0"
+  },
+  "scripts": {
+    "start": "node ./src/server.js",
+    "dev": "./node_modules/.bin/nodemon ./src/server.js"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
