@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router();
 const faker = require('faker')
 
-const users = [...Array(10).keys()].map(id => ({
+const users = [...Array(10).fill(0).map((_, i) => i + 1)].map(id => ({
     id,
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),

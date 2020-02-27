@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function User({
+export function User({
     id,
     firstName,
     lastName,
@@ -25,19 +25,19 @@ const UserType = {
 
 User.propTypes = UserType
 
-export default function UserList({ users }) {
+export default function UserList({ users, onClick }) {
     return (
         <ul>
             {users.map(user => (
-                <User 
-                    key={user.id}
-                    {...user} 
-                />
+                <div key={user.id}>
+                    <a onClick={() => onClick(user.id)}>{user.firstName} {user.lastName}</a>
+                </div>
             ))}
         </ul>
     )
 }
 
 UserList.propTypes = {
-    users: PropTypes.arrayOf(PropTypes.shape(UserType))
+    users: PropTypes.arrayOf(PropTypes.shape(UserType)),
+    onClick: PropTypes.func,
 }

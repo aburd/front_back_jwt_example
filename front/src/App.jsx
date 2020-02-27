@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import UserList from './UserList'
+import UserList, { User } from './UserList'
 
 export default class App extends Component {
     state = {
         users: [],
         loading: false,
+        selectedUserId: null,
     }
     
     componentDidMount() {
@@ -26,9 +27,25 @@ export default class App extends Component {
                 this.setState({ loading: false })
             })
     }
+    
+    fetchUser = (id) => {
+        const url = `/api/users/${id}`
+        this.setState({ loading: true })
+        fetch(url, { headers: { 'Content-Type': 'application/json' } })
+            .then(res => res.json())
+            .then(({ user }) => {
+                this.setState({
+                    loading: false,
+                    selectedUserId: user.id,
+                })
+            })
+            .catch((e) => {
+                this.setState({ loading: false })
+            })
+    }
 
     render() {
-        const { users, loading } = this.state;
+        const { users, loading, selectedUserId } = this.state;
         return (
             <div>
                 <h1>A Simple User List</h1>
@@ -36,9 +53,17 @@ export default class App extends Component {
                     ? <h3>Loading...</h3> 
                     : (
                         <div>
+                            {selectedUserId && (
+                                <User 
+                                    {...(users.find(u => u.id == selectedUserId))}
+                                />
+                            )}
                             {this.state.users.length 
                                 ? (
-                                    <UserList users={users} />
+                                    <UserList 
+                                        users={users} 
+                                        onClick={id => this.fetchUser(id)}
+                                    />
                                 ) 
                                 : <h3>No users!</h3>
                             }
