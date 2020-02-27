@@ -4,10 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server --config=config/webpack.dev.js --hot",
-    "start:reload": "webpack-dev-server --config=config/webpack.dev.js",
-    "start:style": "cross-env MAP_STYLE=true webpack-dev-server --config=config/webpack.dev.js --hot",
-    "build": "webpack --config=config/webpack.prod.js",
+    "start": "webpack-dev-server --config=webpack/webpack.dev.js --hot",
+    "start:reload": "webpack-dev-server --config=webpack/webpack.dev.js",
+    "start:style": "cross-env MAP_STYLE=true webpack-dev-server --config=webpack/webpack.dev.js --hot",
+    "build": "webpack --config=webpack/webpack.prod.js",
     "analyze": "cross-env ENABLE_ANALYZER=true yarn build"
   },
   "devDependencies": {
