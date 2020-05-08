@@ -1,3 +1,8 @@
+update:
+While this may serve as an example on how JWT can be used for authentication, after doing some research I've learned that JWTs are not a good fit as a replacement for long-lived sessions. Much ink has been spilled about it, but if you're interested in learning why, you might try (this blog post)[https://blog.logrocket.com/jwt-authentication-best-practices/].
+
+TLDR; this repo shows an example of using JWT for a fake login, but that's not a typical or "good" example of using JWTs.
+
 ## Goal
 To serve as an example for how a frontend application might primarily rely on a JSON API server for data,
 but that it's static resources are not actually delivered by that server.
